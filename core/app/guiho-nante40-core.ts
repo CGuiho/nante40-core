@@ -28,6 +28,8 @@ export {}
 export type { GuihoNante40Core }
 
 const logger = appLogger
+logger.task.start('Starting application...')
+
 const variables = typeboxParseOrThrow(variablesSchema, process.env)
 const secrets = typeboxParseOrThrow(secretsSchema, process.env)
 
