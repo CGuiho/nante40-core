@@ -23,7 +23,7 @@ interface DependencyInjection {
 
   /**
    * @alias guihoDb
-   * Razura40 Database instance.
+   * Nante40 Database instance.
    * Drizzle ORM Database instance -- PostgreSQL under the hood
    */
   db: GuihoDatabase
