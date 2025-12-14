@@ -1,7 +1,7 @@
 {
   "name": "@guiho40/nante40-core-types",
-  "description": "GUIHO",
-  "version": "0.13.0",
+  "description": "GUIHO Nante40 Core",
+  "version": "0.0.0",
   "readmeFilename": "../readme.md",
   "keywords": [],
   "license": "PROPRIETARY",
@@ -12,14 +12,14 @@
   },
   "sideEffects": false,
   "type": "module",
-  "main": "library/app/nante40-core.js",
-  "types": "library/app/nante40-core.d.ts",
-  "module": "library/app/nante40-core.js",
+  "main": "library/app/guiho-nante40-core.js",
+  "types": "library/app/guiho-nante40-core.d.ts",
+  "module": "library/app/guiho-nante40-core.js",
   "exports": {
     ".": {
       "import": {
-        "types": "./library/app/nante40-core.d.ts",
-        "default": "./library/app/nante40-core.js"
+        "types": "./library/app/guiho-nante40-core.d.ts",
+        "default": "./library/app/guiho-nante40-core.js"
       }
     }
   },
@@ -36,11 +36,11 @@
     "@sinclair/typebox": ">= 0.34.0"
   },
   "scripts": {
-    "dev": "bun run --watch app/nante40-core.ts",
-    "start": "bun run app/nante40-core.ts",
-    "compile": "bun build --compile --minify-whitespace --minify-syntax --target bun --outfile nante40-core ./app/nante40-core.ts",
-    "compile-linux-x64": "bun build --compile --minify-whitespace --minify-syntax --target bun-linux-x64 --outfile nante40-core ./app/nante40-core.ts",
-    "bundle": "bun build --minify-whitespace --minify-syntax --target bun --outfile nante40-core.js ./app/nante40-core.ts",
+    "dev": "bun run --watch app/guiho-nante40-core.ts",
+    "start": "bun run app/guiho-nante40-core.ts",
+    "compile": "bun build --compile --minify-whitespace --minify-syntax --target bun --outfile nante40-core ./app/guiho-nante40-core.ts",
+    "compile-linux-x64": "bun build --compile --minify-whitespace --minify-syntax --target bun-linux-x64 --outfile nante40-core ./app/guiho-nante40-core.ts",
+    "bundle": "bun build --minify-whitespace --minify-syntax --target bun --outfile guiho-nante40-core.js ./app/guiho-nante40-core.ts",
     "pkg:build": "rm -rf library && tsc",
     "typecheck": "tsc --noEmit",
     "_clean": "rm -rf .temp node_modules bun.lock",
