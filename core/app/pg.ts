@@ -8,10 +8,17 @@
  * The relative path is the file path on workspace or folder.
  */
 
-import type { Secrets } from '#guiho/app/environment'
 import pg from 'pg'
 
 export { getPostgreSQL }
+
+interface Credentials {
+  PG_HOST: string
+  PG_PORT: number
+  PG_USER: string
+  PG_DATABASE: string
+  PG_PASSWORD: string
+}
 
 /**
  * Creates and optionally connects to a PostgreSQL client instance.
@@ -50,13 +57,13 @@ export { getPostgreSQL }
  * await client.end();
  * ```
  */
-async function getPostgreSQL(secrets: Secrets, shouldConnect = false) {
+async function getPostgreSQL(credentials: Credentials, shouldConnect = false) {
   const client = new pg.Client({
-    host: secrets.PG_HOST,
-    port: secrets.PG_PORT,
-    user: secrets.PG_USER,
-    database: secrets.PG_DATABASE,
-    password: secrets.PG_PASSWORD,
+    host: credentials.PG_HOST,
+    port: credentials.PG_PORT,
+    user: credentials.PG_USER,
+    database: credentials.PG_DATABASE,
+    password: credentials.PG_PASSWORD,
 
     ssl: false,
   })
