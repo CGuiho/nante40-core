@@ -35,6 +35,7 @@
     "bundle": "bun build --minify-whitespace --minify-syntax --target bun --outfile guiho-nante40-core.js ./app/guiho-nante40-core.ts",
     "pkg:build": "rm -rf library && tsc",
     "typecheck": "tsc --noEmit",
+    "_env": "bun --env-file=../../.env/.env.guiho-nante40-core",
     "_clean": "rm -rf .temp node_modules bun.lock",
     "_tc": "bun run typecheck",
     "_ci": "bun _clean && bun install",
