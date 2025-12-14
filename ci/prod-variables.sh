@@ -7,8 +7,10 @@ variables_array=(
   
   "GUIHO_APP_MODE=prod"
 
+  "GUIHO_PG_DATABASE=guiho"
+  "NANTE40_PG_DATABASE=nante40"
+
   "PG_PORT=6000"
-  "PG_DATABASE=guiho"
   "PG_USER=guiho"
 
   "VALKEY_PORT=7000"
