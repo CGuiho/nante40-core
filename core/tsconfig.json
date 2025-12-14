@@ -1,0 +1,43 @@
+{
+  // "include": ["source/**/*", "app/**/*"],
+  "exclude": ["node_modules", "build", "bundle", "library"],
+
+  "compilerOptions": {
+    "lib": ["ESNext"],
+    "target": "esnext",
+    "jsx": "react-jsx",
+    "allowJs": false,
+
+    "paths": {
+      "#guiho/*": ["./*"]
+    },
+
+    "types": ["@types/bun", "@types/node", "bun"],
+
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "moduleDetection": "auto",
+    "baseUrl": "./",
+
+    "allowSyntheticDefaultImports": true /* Allow 'import x from y' when a module doesn't have a default export. */,
+    "esModuleInterop": true /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables 'allowSyntheticDefaultImports' for type compatibility. */,
+    "forceConsistentCasingInFileNames": true /* Ensure that casing is correct in imports. */,
+
+    "resolveJsonModule": true,
+    "verbatimModuleSyntax": true,
+    "allowImportingTsExtensions": false,
+
+    // Best practices
+    "strict": true,
+    "noImplicitAny": true /* Enable error reporting for expressions and declarations with an implied 'any' type. */,
+    "skipLibCheck": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": false,
+    "noImplicitReturns": true /* Enable error reporting for codepaths that do not explicitly return in a function. */,
+
+    // Some stricter flags (disabled by default)
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noPropertyAccessFromIndexSignature": true,
+  }
+}
