@@ -54,6 +54,7 @@
     "@guiho40/iso-8601": "1.1.0",
     "@guiho40/logger": "1.6.0",
     "@guiho40/maria": "^2.1.0",
+    "@guiho40/nante40": "^0.2.0",
     "@guiho40/razura40": "0.12.0",
     "@guiho40/sensacional": "^3.0.0-alpha.1",
     "@guiho40/stored": "^2.0.0-alpha.1",

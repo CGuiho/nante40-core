@@ -12,6 +12,7 @@
         "@guiho40/iso-8601": "1.1.0",
         "@guiho40/logger": "1.6.0",
         "@guiho40/maria": "^2.1.0",
+        "@guiho40/nante40": "^0.2.0",
         "@guiho40/razura40": "0.12.0",
         "@guiho40/sensacional": "^3.0.0-alpha.1",
         "@guiho40/stored": "^2.0.0-alpha.1",
@@ -86,6 +87,8 @@
     "@guiho40/maria": ["@guiho40/maria@2.1.0", "https://europe-west4-npm.pkg.dev/guiho40/guiho40/@guiho40/maria/-/@guiho40/maria-2.1.0.tgz", { "dependencies": { "@guiho40/sensacional": "1.4.0", "@react-email/components": "0.5.7", "react": "^19.2.0", "react-dom": "^19.2.0" }, "peerDependencies": { "@sinclair/typebox": ">= 0.34.41", "typescript": ">5.9.3" } }, "sha512-U1vGKpomf5SYxRvuaUimOrpgnJTWDiHwrsxLiwLo0KZQa216iHGLtl/7F4x8U6+FfxCIvdYAdip+ysAqHYsUnQ=="],
 
     "@guiho40/mirror": ["@guiho40/mirror@2.3.0", "https://europe-west4-npm.pkg.dev/guiho40/guiho40/@guiho40/mirror/-/@guiho40/mirror-2.3.0.tgz", { "dependencies": { "semver": "^7.7.3" }, "peerDependencies": { "typescript": "^5.8.2" }, "bin": { "mirror": "bin/mirror.exe" } }, "sha512-N5UrQtby3nPKsD8BNXYzvagCk93m9ZQupGwnyxSGaX6sGR6EjmGkXcNDEug0DHYX7Gv4t3lmgjnH19+eLVfSMw=="],
+
+    "@guiho40/nante40": ["@guiho40/nante40@0.2.0", "https://europe-west4-npm.pkg.dev/guiho40/guiho40/@guiho40/nante40/-/@guiho40/nante40-0.2.0.tgz", { "dependencies": { "@guiho40/iso-8601": "^1.1.0", "@guiho40/logger": "^1.6.0", "@guiho40/sensacional": "2.9.0", "@guiho40/stored": "2.0.0-alpha.1", "@guiho40/time": "1.1.0", "iovalkey": "^0.3.3", "pg": "^8.16.3" }, "peerDependencies": { "@sinclair/typebox": ">= 0.34.0", "drizzle-orm": ">=0.45.0" } }, "sha512-NYhqIBEQ1vF/L21sDrTsw008xEJvOlhoOAjy8YFIvsv+7CxPt5a+n+9XLpa4JvymSZHW5QxnHxa4RwIO9TV7RA=="],
 
     "@guiho40/razura40": ["@guiho40/razura40@0.12.0", "https://europe-west4-npm.pkg.dev/guiho40/guiho40/@guiho40/razura40/-/@guiho40/razura40-0.12.0.tgz", { "dependencies": { "@guiho40/iso-8601": "^1.1.0", "@guiho40/logger": "^1.6.0", "@guiho40/sensacional": "2.9.0", "@guiho40/stored": "2.0.0-alpha.1", "@guiho40/time": "1.1.0", "iovalkey": "^0.3.3", "pg": "^8.16.3" }, "peerDependencies": { "@sinclair/typebox": ">= 0.34.0", "drizzle-orm": ">=0.45.0" } }, "sha512-bSnHzm1Ik3l9ojQB91ev3Eevp/hyOFRtAAEmFXphkd3iyKCxurm30WHL7jHl+JXaXwVUbhq1zEYyPwZDK0rwgg=="],
 
@@ -588,6 +591,8 @@
     "@guiho40/guiho/@guiho40/sensacional": ["@guiho40/sensacional@2.9.0", "https://europe-west4-npm.pkg.dev/guiho40/guiho40/@guiho40/sensacional/-/@guiho40/sensacional-2.9.0.tgz", { "dependencies": { "@guiho40/iso-8601": "^1.0.0", "@guiho40/logger": "^1.6.0", "nanoid": "^5.1.6" }, "peerDependencies": { "@sinclair/typebox": ">= 0.34.0" } }, "sha512-hdTUcV9DCAcSiVmlpV1MdiA8KFQtwwAZjknqxk9+5ayOaCV5QtKvmS424mVmp3uf2PziOzOslxcyfbfo3mb+pQ=="],
 
     "@guiho40/maria/@guiho40/sensacional": ["@guiho40/sensacional@1.4.0", "https://europe-west4-npm.pkg.dev/guiho40/guiho40/@guiho40/sensacional/-/@guiho40/sensacional-1.4.0.tgz", { "dependencies": { "@guiho40/iso-8601": "^1.0.0", "@guiho40/logger": "^1.6.0", "@paralleldrive/cuid2": "^2.2.2" }, "peerDependencies": { "@sinclair/typebox": ">= 0.34.0" } }, "sha512-vN430Hb0UiXHbgfMBaS3R+2LlJJG1zdZ9QyeMALiPTgrz5JYfishWcazcG0pNYlpR9LyRLDnlkp2hy0hWeIVIA=="],
+
+    "@guiho40/nante40/@guiho40/sensacional": ["@guiho40/sensacional@2.9.0", "https://europe-west4-npm.pkg.dev/guiho40/guiho40/@guiho40/sensacional/-/@guiho40/sensacional-2.9.0.tgz", { "dependencies": { "@guiho40/iso-8601": "^1.0.0", "@guiho40/logger": "^1.6.0", "nanoid": "^5.1.6" }, "peerDependencies": { "@sinclair/typebox": ">= 0.34.0" } }, "sha512-hdTUcV9DCAcSiVmlpV1MdiA8KFQtwwAZjknqxk9+5ayOaCV5QtKvmS424mVmp3uf2PziOzOslxcyfbfo3mb+pQ=="],
 
     "@guiho40/razura40/@guiho40/sensacional": ["@guiho40/sensacional@2.9.0", "https://europe-west4-npm.pkg.dev/guiho40/guiho40/@guiho40/sensacional/-/@guiho40/sensacional-2.9.0.tgz", { "dependencies": { "@guiho40/iso-8601": "^1.0.0", "@guiho40/logger": "^1.6.0", "nanoid": "^5.1.6" }, "peerDependencies": { "@sinclair/typebox": ">= 0.34.0" } }, "sha512-hdTUcV9DCAcSiVmlpV1MdiA8KFQtwwAZjknqxk9+5ayOaCV5QtKvmS424mVmp3uf2PziOzOslxcyfbfo3mb+pQ=="],
 
