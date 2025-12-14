@@ -3,8 +3,8 @@
   "autokill": true,
   "terminals": [
     {
-      "name": "GUIHO Core",
-      "description": "GUIHO Core",
+      "name": "GUIHO Nante40 Core",
+      "description": "GUIHO Nante40 Core",
       "icon": "zap",
       "color": "terminal.ansiWhite",
       "open": true,
@@ -17,9 +17,9 @@
       ]
     },
     {
-      "split": "GUIHO Core",
-      "name": "GUIHO Core Server",
-      "description": "GUIHO Core Server",
+      "split": "GUIHO Nante40 Core",
+      "name": "GUIHO Nante40 Core Server",
+      "description": "GUIHO Nante40 Core Server",
       "icon": "zap",
       "color": "terminal.ansiWhite",
       "open": true,
