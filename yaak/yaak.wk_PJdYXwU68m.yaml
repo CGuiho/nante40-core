@@ -1,0 +1,14 @@
+type: workspace
+model: workspace
+id: wk_PJdYXwU68m
+createdAt: 2025-12-14T21:42:26.925146
+updatedAt: 2025-12-14T21:42:26.925146900
+authentication: {}
+authenticationType: null
+description: ''
+headers: []
+name: GUIHO Nante40 Core
+encryptionKeyChallenge: null
+settingValidateCertificates: true
+settingFollowRedirects: true
+settingRequestTimeout: 0
