@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-_app_name="guiho-core"
+_app_name="nante40-core"
 
 _file_dir=$(dirname $0)
 _ci_dir=$(realpath $_file_dir)

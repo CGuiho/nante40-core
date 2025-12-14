@@ -4,16 +4,16 @@
 
 set -e
 
-_repo_url="https://github.com/cguiho/guiho-core.git"
-_package_name="@guiho40/guiho-core" # Also change this on the command line below. (around line 14)
+_repo_url="https://github.com/cguiho/nante40-core.git"
+_package_name="@guiho40/nante40-core" # Also change this on the command line below. (around line 14)
 
 _cwd=$(pwd)
-_repo_dir="$_cwd/../../.temp/guiho-core"
+_repo_dir="$_cwd/../../.temp/nante40-core"
 _project_dir=$_repo_dir/core
 
 if [ -z "$1" ]; then
   echo "No version tag provided. Using the latest tag."
-  latest_tag=$(git ls-remote --tags $_repo_url | grep -o 'refs/tags/guiho-core@[^ ]*' | sed 's#refs/tags/##' | grep -v '\^{}' | sort -V | tail -n1)
+  latest_tag=$(git ls-remote --tags $_repo_url | grep -o 'refs/tags/nante40-core@[^ ]*' | sed 's#refs/tags/##' | grep -v '\^{}' | sort -V | tail -n1)
   echo "Using Latest tag: $latest_tag"
   
   _tag=$latest_tag

@@ -3,9 +3,9 @@
 # --- Variables ---
 export PROJECT_ID="guiho40"
 
-export SA_ID="guiho-core"
-export SA_DISPLAY_NAME="GUIHO Core"
-export SA_DESCRIPTION="Backend of GUIHO application."
+export SA_ID="nante40-core"
+export SA_DISPLAY_NAME="GUIHO Nante40 Core"
+export SA_DESCRIPTION="Backend of GUIHO Nante40 Core application."
 
 # --- Announce ---
 echo -e "\n🚀 Creating and configuring GCP IAM Service Account for $SA_DISPLAY_NAME \n"
