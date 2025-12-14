@@ -63,4 +63,4 @@ gcloud run deploy $_service \
   #  --concurrency 1000
 
 echo "✅ Deployment done."
-echo "🚀 https://core.guiho.co"
+echo "🚀 https://core.nante40.guiho.co"
