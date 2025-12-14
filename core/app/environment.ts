@@ -33,9 +33,11 @@ const secretsSchema = Type.Object({
   SESSION_PAST_SIGNING_KEY_2: Type.String({ minLength: 32, maxLength: 32 }),
   SESSION_PAST_SIGNING_KEY_3: Type.String({ minLength: 32, maxLength: 32 }),
 
+  GUIHO_PG_DATABASE: Type.String(),
+  NANTE40_PG_DATABASE: Type.String(),
+
   PG_HOST: Type.String(),
   PG_PORT: Type.Number(),
-  PG_DATABASE: Type.String(),
   PG_USER: Type.String(),
   PG_PASSWORD: Type.String(),
 
