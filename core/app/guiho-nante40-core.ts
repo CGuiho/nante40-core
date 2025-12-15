@@ -13,7 +13,7 @@ import { secretsSchema, variablesSchema } from '#guiho/app/environment'
 import { APP_ORIGIN, CORS_ALLOWED_ORIGINS } from '#guiho/app/constants'
 import packageJson from '../package.json' assert { type: 'json' }
 
-import { getPostgreSQL } from '#guiho/app/pg'
+import { getPostgreSQL } from '#guiho/app/postgres.js'
 import { getValkey } from '#guiho/app/valkey'
 import { typeboxParseOrThrow } from '@guiho40/sensacional'
 
@@ -41,8 +41,6 @@ const secrets = typeboxParseOrThrow(secretsSchema, process.env)
 const valkey = getValkey(secrets)
 const guihoPostgreSQL = await getPostgreSQL({ ...secrets, PG_DATABASE: secrets.GUIHO_PG_DATABASE })
 const nante40PostgreSQL = await getPostgreSQL({ ...secrets, PG_DATABASE: secrets.NANTE40_PG_DATABASE })
-
-await Promise.all([guihoPostgreSQL.connect(), nante40PostgreSQL.connect()])
 
 const guihoDb = getGuihoDatabase(guihoPostgreSQL)
 const nante40Db = getNante40Database(nante40PostgreSQL)
