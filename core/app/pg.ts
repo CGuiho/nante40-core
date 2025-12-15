@@ -8,7 +8,7 @@
  * The relative path is the file path on workspace or folder.
  */
 
-import pg from 'pg'
+import postgres from 'postgres'
 
 export { getPostgreSQL }
 
@@ -21,44 +21,48 @@ interface Credentials {
 }
 
 /**
- * Creates and optionally connects to a PostgreSQL client instance.
+ * Creates a PostgreSQL client instance using `postgres.js`.
  *
- * This function initializes a new `pg.Client` using connection details
- * from the provided environment object or by fetching them from the
- * application's environment via `getEnvironment()`.
+ * This function initializes a `postgres` instance (which manages a connection pool)
+ * using the provided credentials.
  *
  * @remarks
  * SSL is hardcoded to `false` in the client configuration.
+ * `postgres.js` handles connections lazily by default.
  *
- * @param env - Optional. An object containing the PostgreSQL connection secrets (PG_HOST, PG_PORT, etc.). If not provided, `getEnvironment()` is called.
- * @param shouldConnect - Determines whether to connect the client to the database before returning it.
- * @default shouldConnect true
- * @returns A promise that resolves to a `pg.Client` instance. The client will be connected if `shouldConnect` is true.
+ * @param credentials - An object containing the PostgreSQL connection secrets (PG_HOST, PG_PORT, etc.).
+ * @param shouldConnect - If true, executes a simple query ('SELECT 1') to verify/establish the connection immediately.
+ * @default shouldConnect false
+ * @returns A promise that resolves to a `postgres.Sql` instance.
  *
  * @example
  * ```typescript
- * // Get a connected client and run a query
- * const client = await getPostgreSQL();
+ * // Get a client instance
+ * const sql = await getPostgreSQL(creds);
+ *
  * try {
- *   const res = await client.query('SELECT NOW()');
- *   console.log(res.rows[0]);
+ *   // Run a query
+ *   const result = await sql`SELECT NOW()`;
+ *   console.log(result);
  * } finally {
- *   await client.end();
+ *   // Close the connection (pool)
+ *   await sql.end();
  * }
  * ```
  *
  * @example
  * ```typescript
- * // Get an unconnected client
- * const client = await getPostgreSQL(process.env, false);
- * // Manually connect later
- * await client.connect();
- * // ...
- * await client.end();
+ * // Get a client and ensure connection is open immediately
+ * const sql = await getPostgreSQL(creds, true);
+ *
+ * // ... perform operations ...
+ *
+ * // Close the session later
+ * await sql.end();
  * ```
  */
 async function getPostgreSQL(credentials: Credentials, shouldConnect = false) {
-  const client = new pg.Client({
+  const sql = postgres({
     host: credentials.PG_HOST,
     port: credentials.PG_PORT,
     user: credentials.PG_USER,
@@ -67,6 +71,11 @@ async function getPostgreSQL(credentials: Credentials, shouldConnect = false) {
 
     ssl: false,
   })
-  if (shouldConnect) await client.connect()
-  return client
+
+  // postgres.js is lazy, but if shouldConnect is requested, we verify connectivity.
+  if (shouldConnect) {
+    await sql`SELECT 1`
+  }
+
+  return sql
 }
