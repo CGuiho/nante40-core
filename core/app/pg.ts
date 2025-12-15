@@ -31,8 +31,8 @@ interface Credentials {
  * `postgres.js` handles connections lazily by default.
  *
  * @param credentials - An object containing the PostgreSQL connection secrets (PG_HOST, PG_PORT, etc.).
- * @param shouldConnect - If true, executes a simple query ('SELECT 1') to verify/establish the connection immediately.
- * @default shouldConnect false
+ * @param ensureConnectivity - If true, executes a simple query ('SELECT 1') to verify/establish the connection immediately.
+ * @default ensureConnectivity true
  * @returns A promise that resolves to a `postgres.Sql` instance.
  *
  * @example
@@ -61,7 +61,7 @@ interface Credentials {
  * await sql.end();
  * ```
  */
-async function getPostgreSQL(credentials: Credentials, shouldConnect = false) {
+async function getPostgreSQL(credentials: Credentials, ensureConnectivity = true) {
   const sql = postgres({
     host: credentials.PG_HOST,
     port: credentials.PG_PORT,
@@ -72,8 +72,8 @@ async function getPostgreSQL(credentials: Credentials, shouldConnect = false) {
     ssl: false,
   })
 
-  // postgres.js is lazy, but if shouldConnect is requested, we verify connectivity.
-  if (shouldConnect) {
+  // postgres.js is lazy, we verify connectivity.
+  if (ensureConnectivity) {
     await sql`SELECT 1`
   }
 
