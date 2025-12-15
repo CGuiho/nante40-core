@@ -1,5 +1,4 @@
 import Valkey from 'iovalkey'
-import type { Client } from 'pg'
 
 import packageJson from '../package.json' assert { type: 'json' }
 
@@ -7,6 +6,7 @@ import type { Secrets, Variables } from '#guiho/app/environment.js'
 import type { GuihoDatabase } from '@guiho40/guiho/server'
 import type { Logger } from '@guiho40/logger'
 import type { Nante40Database } from '@guiho40/nante40/server'
+import type { Sql } from 'postgres'
 
 export {}
 export type { DependencyInjection }
@@ -23,8 +23,8 @@ interface DependencyInjection {
   /** Valkey instance. -- iovalkey, ioredis alternative. */
   valkey: Valkey
   
-  guihoPostgreSQL: Client
-  nante40PostgreSQL: Client
+  guihoPostgreSQL: Sql
+  nante40PostgreSQL: Sql
 
   /**
    * @alias nante40Db
