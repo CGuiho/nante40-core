@@ -1,5 +1,5 @@
 ---
-trigger: manual
+trigger: always_on
 description: When building front-end applications using React.js.
 ---
 
