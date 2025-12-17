@@ -108,7 +108,7 @@ const cleanUpSignals = ['exit', 'SIGINT', 'SIGTERM', 'SIGKILL'] as const
 for (const signal of cleanUpSignals) {
   process.on(signal, async () => {
     console.log(`${signal} received, stopping app...`)
-    await app.stop()
     await cleanUp()
+    await app.stop()
   })
 }
