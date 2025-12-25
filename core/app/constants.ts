@@ -5,12 +5,6 @@
 import { random, type Language } from '@guiho40/sensacional'
 import { Span } from '@guiho40/time'
 
-/**
- * File name: constants.ts
- * Relative file path: core\app\constants.ts
- * The relative path is the file path on workspace or folder.
- */
-
 export {
   APP_DEFAULT_LANGUAGE,
   APP_DEFAULT_LOCALE,
