@@ -20,7 +20,7 @@ import { typeboxParseOrThrow } from '@guiho40/sensacional'
 import { chatService } from '#guiho/app/chat-service'
 import type { DependencyInjection } from '#guiho/app/dependency-injection'
 import { pingService } from '#guiho/app/ping'
-import { RoomChatSubscriptionManager } from '#guiho/app/room-chat/room-chat-manager.js'
+import { roomChatService } from '#guiho/app/room-chat/room-chat.js'
 import { valkeyService } from '#guiho/app/valkey-service'
 import { getGuihoDatabase } from '@guiho40/guiho/server'
 import { getNante40Database } from '@guiho40/nante40/server'
@@ -72,11 +72,6 @@ async function cleanUp() {
 }
 
 /**
- * @section Other Singletons
- */
-const roomChatSubscriptionManager = new RoomChatSubscriptionManager(secrets)
-
-/**
  * @section CORS Allowed Origins
  */
 const CORS_ALLOWED_ORIGINS =
@@ -98,6 +93,8 @@ const app = new Elysia()
   .use(chatService(dependencyInjection))
   
   .use(valkeyService(dependencyInjection))
+  
+  .use(roomChatService(dependencyInjection))
   
   .onStart(({ server, decorator }) => decorator.di.logger.pulse(`running at http://localhost:${server?.port}`))
   .onStop(async ({ decorator }) => {
