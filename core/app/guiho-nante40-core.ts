@@ -10,7 +10,7 @@ import openapi, { fromTypes } from '@elysiajs/openapi'
 import { appLogger } from '#guiho/app/app-logger'
 import { secretsSchema, variablesSchema } from '#guiho/app/environment'
 
-import { APP_ORIGIN, CORS_ALLOWED_ORIGINS } from '#guiho/app/constants'
+import { APP_ORIGIN, CORS_ALLOWED_ORIGINS_DEVELOPMENT, CORS_ALLOWED_ORIGINS_PRODUCTION } from '#guiho/app/constants'
 import packageJson from '../package.json' assert { type: 'json' }
 
 import { getPostgreSQL } from '#guiho/app/postgres.js'
@@ -48,7 +48,6 @@ const nante40Db = getNante40Database(nante40PostgreSQL)
 /**
  * @section Dependency Injection
  */
-
 const dependencyInjection: DependencyInjection = {
   packageJson,
 
@@ -71,6 +70,12 @@ async function cleanUp() {
   logger.task.success('Resources cleaned up.')
 }
 
+/**
+ * @section CORS Allowed Origins
+ */
+const CORS_ALLOWED_ORIGINS =
+  variables.GUIHO_APP_MODE === 'local' ? CORS_ALLOWED_ORIGINS_DEVELOPMENT : CORS_ALLOWED_ORIGINS_PRODUCTION
+
 /* prettier-ignore */
 const app = new Elysia()
 	.use(cors({ origin: Array.from(CORS_ALLOWED_ORIGINS) }))
@@ -84,7 +89,6 @@ const app = new Elysia()
 
   .get('/', () => 'Cristóvão GUIHO')
   .use(pingService(dependencyInjection))
-  
   .use(chatService(dependencyInjection))
   
   .use(valkeyService(dependencyInjection))
