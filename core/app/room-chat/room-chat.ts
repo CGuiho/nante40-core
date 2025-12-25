@@ -27,6 +27,8 @@ function roomChatService(di: DependencyInjection) {
    */
   const chatManager = new RoomChatSubscriptionManager(di.secrets)
 
+  const logger = logger.child('room-chat.ts')
+
   return (
     new Elysia({ name: 'room-chat', prefix: '/room/chat' })
 
@@ -34,9 +36,9 @@ function roomChatService(di: DependencyInjection) {
       .onStart(({ server }) => {
         if (server) {
           chatManager.setServer(server)
-          di.logger.info('[RoomChat] Chat Manager linked to Bun Server')
+          logger.info('Chat Manager linked to Bun Server')
         } else {
-          di.logger.error('[RoomChat] Failed to link Chat Manager: Server is null')
+          logger.error('Failed to link Chat Manager: Server is null')
         }
       })
 
@@ -59,7 +61,7 @@ function roomChatService(di: DependencyInjection) {
           // The topic name MUST match what the Manager publishes to
           ws.subscribe(`room:${roomUid}`)
 
-          di.logger.debug(`[WS] Client ${socketId} joined room ${roomUid}`)
+          logger.debug(`[WS] Client ${socketId} joined room ${roomUid}`)
         },
 
         /**
@@ -106,7 +108,7 @@ function roomChatService(di: DependencyInjection) {
 
             await chatManager.publishToRoom(roomUid, messageString)
           } catch (error) {
-            di.logger.error(`[WS] Error processing message in room ${roomUid}`, error)
+            logger.error(`[WS] Error processing message in room ${roomUid}`, error)
             ws.send(JSON.stringify({ error: 'Failed to process message' }))
           }
         },
@@ -122,7 +124,7 @@ function roomChatService(di: DependencyInjection) {
 
           ws.unsubscribe(`room:${roomUid}`)
 
-          di.logger.debug(`[WS] Client ${ws.id} left room ${roomUid}`)
+          logger.debug(`[WS] Client ${ws.id} left room ${roomUid}`)
         },
       })
   )
