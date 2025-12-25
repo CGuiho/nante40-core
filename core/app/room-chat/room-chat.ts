@@ -43,32 +43,32 @@ function roomChatService(di: DependencyInjection) {
       })
 
       // 2. Define the WebSocket Endpoint
-      .ws('/:roomUid/ws', {
+      .ws('/:uid/ws', {
         body: incomingMessageSchema,
 
         /**
          * Handle New Connection
          */
         async open(ws) {
-          const { roomUid } = ws.data.params
+          const { uid } = ws.data.params
           const socketId = ws.id
 
           // A. Join the Valkey Subscription (Fan-out entry)
           // This ensures this Cloud Run instance is listening for messages for this room
-          await chatManager.joinRoom(roomUid)
+          await chatManager.joinRoom(uid)
 
           // B. Subscribe the specific WebSocket client to the specific Topic
           // The topic name MUST match what the Manager publishes to
-          ws.subscribe(`room:${roomUid}`)
+          ws.subscribe(`room:${uid}`)
 
-          logger.debug(`[WS] Client ${socketId} joined room ${roomUid}`)
+          logger.debug(`WebSocket Client ${socketId} joined room ${uid}`)
         },
 
         /**
          * Handle Incoming Message
          */
         async message(ws, { content, profileId }) {
-          const { roomUid } = ws.data.params
+          const { uid } = ws.data.params
 
           try {
             // --- 1. Database Persistence (Source of Truth) ---
@@ -78,7 +78,7 @@ function roomChatService(di: DependencyInjection) {
              *
              * const [savedMessage] = await di.db.insert(roomMessage).values({
              *   uid: crypto.randomUUID(), // Or let DB generate it
-             *   roomUid: roomUid,         // Assuming you map Uid to Id or store Uid
+             *   uid: uid,         // Assuming you map Uid to Id or store Uid
              *   profileId: profileId,
              *   content: content,
              *   // ... other defaults
@@ -89,7 +89,7 @@ function roomChatService(di: DependencyInjection) {
             const payload: RoomMessage = {
               id: Date.now(), // Mock ID
               uid: crypto.randomUUID(),
-              roomId: 0, // In real app, resolve roomUid -> roomId
+              roomId: 0, // In real app, resolve uid -> roomId
               profileId: profileId,
               content: content,
               flags: [],
@@ -106,9 +106,9 @@ function roomChatService(di: DependencyInjection) {
             // Our Manager receives from Valkey and calls server.publish().
             const messageString = JSON.stringify(payload)
 
-            await chatManager.publishToRoom(roomUid, messageString)
+            await chatManager.publishToRoom(uid, messageString)
           } catch (error) {
-            logger.error(`[WS] Error processing message in room ${roomUid}`, error)
+            logger.error(`[WS] Error processing message in room ${uid}`, error)
             ws.send(JSON.stringify({ error: 'Failed to process message' }))
           }
         },
@@ -117,14 +117,14 @@ function roomChatService(di: DependencyInjection) {
          * Handle Disconnection
          */
         async close(ws) {
-          const { roomUid } = ws.data.params
+          const { uid } = ws.data.params
 
           // Unsubscribe from Valkey if this was the last user on this instance
-          await chatManager.leaveRoom(roomUid)
+          await chatManager.leaveRoom(uid)
 
-          ws.unsubscribe(`room:${roomUid}`)
+          ws.unsubscribe(`room:${uid}`)
 
-          logger.debug(`[WS] Client ${ws.id} left room ${roomUid}`)
+          logger.debug(`[WS] Client ${ws.id} left room ${uid}`)
         },
       })
   )
