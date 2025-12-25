@@ -11,16 +11,26 @@ import { Span } from '@guiho40/time'
  * The relative path is the file path on workspace or folder.
  */
 
-export { APP_ID, APP_NAME, APP_ORIGIN, CORS_ALLOWED_ORIGINS, defaultCacheSpan, APP_DEFAULT_LANGUAGE }
+export {
+  APP_DEFAULT_LANGUAGE,
+  APP_DEFAULT_LOCALE,
+  APP_ID,
+  APP_NAME,
+  APP_ORIGIN,
+  CORS_ALLOWED_ORIGINS_DEVELOPMENT,
+  CORS_ALLOWED_ORIGINS_PRODUCTION,
+  DEFAULT_CACHE_SPAN,
+}
 export type {}
 
 const APP_ID = 'G1000' as const
 const APP_NAME = 'guiho-nante40-core' as const
 const APP_ORIGIN = 'https://core.nante40.guiho.co' as const
 
-const APP_DEFAULT_LANGUAGE: Language = 'en-US' as const
+const APP_DEFAULT_LANGUAGE: Language = 'pt-PT' as const
+const APP_DEFAULT_LOCALE = 'pt-PT' as const
 
-const defaultCacheSpan = () => Span.minutes(random(10, 15))
+const DEFAULT_CACHE_SPAN = () => Span.minutes(random(10, 15))
 
 // prettier-ignore
 /**
@@ -30,7 +40,7 @@ const defaultCacheSpan = () => Span.minutes(random(10, 15))
  * @warning Do not include localhost or development domains here.
  * @warning Do not append trailing slashes to the domains.
  */
-const CORS_ALLOWED_ORIGINS = [
+const CORS_ALLOWED_ORIGINS_PRODUCTION = [
                       'https://guiho.co',
                   'https://www.guiho.co',
 
@@ -75,3 +85,5 @@ const CORS_ALLOWED_ORIGINS = [
          'https://core.banda40.guiho.co',
 
 ] as const
+
+const CORS_ALLOWED_ORIGINS_DEVELOPMENT = ['http://localhost:4001'] as const
