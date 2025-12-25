@@ -86,4 +86,17 @@ const CORS_ALLOWED_ORIGINS_PRODUCTION = [
 
 ] as const
 
-const CORS_ALLOWED_ORIGINS_DEVELOPMENT = ['http://localhost:4001'] as const
+const CORS_ALLOWED_ORIGINS_DEVELOPMENT = [
+  'http://localhost:4000',
+  'http://localhost:4001',
+  'http://localhost:4002',
+  'http://localhost:4010',
+  'http://localhost:4020',
+  'http://localhost:4030',
+  'http://localhost:4040',
+  'http://localhost:4050',
+  'http://localhost:4060',
+  'http://localhost:4070',
+  'http://localhost:4080',
+  'http://localhost:4090',
+] as const
