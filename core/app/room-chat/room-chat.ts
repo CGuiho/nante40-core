@@ -77,7 +77,7 @@ function roomChatService(di: DependencyInjection) {
           // The topic name MUST match what the Manager publishes to
           ws.subscribe(`room:${uid}`)
 
-          logger.debug(`WebSocket Client ${socketId} joined room ${uid}`)
+          logger.info(`WebSocket Client ${socketId} joined room ${uid}`)
         },
 
         /**
