@@ -2,8 +2,12 @@
  * @copyright Copyright © 2025 GUIHO Technologies as represented by Cristóvão GUIHO. All Rights Reserved.
  */
 
+import { authMiddleware } from '#guiho/app/auth/auth-middleware.js'
 import type { DependencyInjection } from '#guiho/app/dependency-injection'
+import { profileMiddleware } from '#guiho/app/profile/profile-middleware.js'
+import { roomAuthorization } from '#guiho/app/room-chat/room-authorization.js'
 import { RoomChatSubscriptionManager } from '#guiho/app/room-chat/room-chat-manager.js'
+import { roomMessage } from '@guiho40/nante40'
 import { Elysia, t } from 'elysia'
 
 export { roomChatService }
@@ -27,7 +31,7 @@ function roomChatService(di: DependencyInjection) {
    */
   const chatManager = new RoomChatSubscriptionManager(di.secrets)
 
-  const logger = logger.child('room-chat.ts')
+  const logger = di.logger.child('room-chat.ts')
 
   return (
     new Elysia({ name: 'room-chat', prefix: '/room/chat' })
@@ -42,10 +46,22 @@ function roomChatService(di: DependencyInjection) {
         }
       })
 
+      .use(authMiddleware(di))
+      .use(profileMiddleware(di))
+
       // 2. Define the WebSocket Endpoint
       .ws('/:uid/ws', {
         body: incomingMessageSchema,
 
+        beforeHandle: async ctx => {
+          const roomUid = ctx.params.uid
+          const profile = ctx.profile
+
+          const result = await roomAuthorization({ uid: roomUid, profile }, di)
+          if (!result.success) return ctx.redirect(result.redirect)
+
+          return { room: result.room, roomMember: result.roomMember }
+        },
         /**
          * Handle New Connection
          */
@@ -73,17 +89,15 @@ function roomChatService(di: DependencyInjection) {
           try {
             // --- 1. Database Persistence (Source of Truth) ---
 
-            /*
-             * UNCOMMENT WHEN DRIZZLE SCHEMA IS READY:
-             *
-             * const [savedMessage] = await di.db.insert(roomMessage).values({
-             *   uid: crypto.randomUUID(), // Or let DB generate it
-             *   uid: uid,         // Assuming you map Uid to Id or store Uid
-             *   profileId: profileId,
-             *   content: content,
-             *   // ... other defaults
-             * }).returning()
-             */
+            const [savedMessage] = await di.db
+              .insert(roomMessage)
+              .values({
+                roomId: uid,
+                profileId: profileId,
+                content: content,
+                // ... other defaults
+              })
+              .returning()
 
             // Mocking the DB return for this example:
             const payload: RoomMessage = {
