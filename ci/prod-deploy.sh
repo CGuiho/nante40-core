@@ -24,13 +24,14 @@ echo "✅ Docker image $_docker_image:$_image_tag exist in the registry."
 
 echo "🔄 Deploying $_service with image $_docker_image:$_image_tag"
 
+echo ""
 echo "🕗 You have 10 seconds to cancel it (if needed). Otherwise wait!"
 
 sleep 6 && echo "🕘 4 seconds left."
 sleep 1 && echo "🕖 3 seconds left."
 sleep 1 && echo "🕕 2 seconds left."
 sleep 1 && echo "🕔 1 second left."
-
+echo ""
 
 gcloud run deploy $_service \
   --image europe-west4-docker.pkg.dev/guiho40/guiho/$_docker_image:$_image_tag \
