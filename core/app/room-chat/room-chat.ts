@@ -6,7 +6,7 @@ import { authMiddleware } from '#guiho/app/auth/auth-middleware.js'
 import type { DependencyInjection } from '#guiho/app/dependency-injection'
 import { profileMiddleware } from '#guiho/app/profile/profile-middleware.js'
 import { roomAuthorization } from '#guiho/app/room-chat/room-authorization.js'
-import { RoomChatSubscriptionManager } from '#guiho/app/room-chat/room-chat-manager.js'
+import { RoomChatSubscriptionManager, roomMessageChannelKey } from '#guiho/app/room-chat/room-chat-manager.js'
 import { roomMessage as roomMessageTable } from '@guiho40/nante40'
 import { Elysia, t } from 'elysia'
 
@@ -80,7 +80,7 @@ function roomChatService(di: DependencyInjection) {
 
             // B. Subscribe the specific WebSocket client to the specific Topic
             // The topic name MUST match what the Manager publishes to
-            ws.subscribe(`room:${room.uid}`)
+            ws.subscribe(roomMessageChannelKey(room.uid))
 
             logger.info(`WebSocket Client ${socketId} joined room ${room.uid}`)
           } catch (err) {
@@ -130,7 +130,7 @@ function roomChatService(di: DependencyInjection) {
             // Unsubscribe from Valkey if this was the last user on this instance
             await chatManager.leaveRoom(room.uid)
 
-            ws.unsubscribe(`room:${room.uid}`)
+            ws.unsubscribe(roomMessageChannelKey(room.uid))
 
             logger.info(`WebSocket Client ${ws.id} left room ${room.uid}`)
           } catch (error) {
