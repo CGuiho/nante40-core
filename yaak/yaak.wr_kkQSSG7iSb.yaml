@@ -2,7 +2,7 @@ type: websocket_request
 model: websocket_request
 id: wr_kkQSSG7iSb
 createdAt: 2025-12-26T00:19:56.633101900
-updatedAt: 2025-12-26T00:37:39.045409300
+updatedAt: 2025-12-26T00:38:14.167699900
 workspaceId: wk_PJdYXwU68m
 folderId: null
 authentication: {}
@@ -12,5 +12,5 @@ headers: []
 message: ''
 name: /room/:uid/chat
 sortPriority: 1000.0
-url: ''
+url: ${[ ws_origin ]}/room/:uid/chat
 urlParameters: []
