@@ -12,7 +12,7 @@ import { Elysia, t } from 'elysia'
 
 import { userDbGet, userSchema, user as userTable } from '@guiho40/guiho'
 import { profile, profile as profileTable, roomMember as roomMemberTable } from '@guiho40/nante40'
-import { count, eq, inArray } from 'drizzle-orm'
+import { and, count, eq, inArray } from 'drizzle-orm'
 
 export { roomUidService }
 export type {}
@@ -196,12 +196,17 @@ function roomUidService(di: DependencyInjection) {
     .get(
       '/member/profile/:pid/full',
       async ctx => {
-        // Query the profile with the given id
+        // Query the profile with the given
         // The member is the roomMember with the profileId equal to the profile.id
         const { profile, member } = await di.db
           .select({ profile: profileTable, member: roomMemberTable })
           .from(profileTable)
-          .innerJoin(roomMemberTable, eq(profileTable.id, roomMemberTable.profileId))
+          .innerJoin(roomMemberTable, 
+            and(
+              eq(profileTable.id, roomMemberTable.profileId),
+              eq(roomMemberTable.roomId, ctx.room.id)
+            )
+          )
           .where(eq(profileTable.id, ctx.params.pid))
           .then(res => res[0])
 
