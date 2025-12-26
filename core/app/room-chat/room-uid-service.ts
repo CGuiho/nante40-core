@@ -194,8 +194,10 @@ function roomUidService(di: DependencyInjection) {
     )
 
     .get(
-      '/member/:pid/full',
+      '/member/profile/:pid/full',
       async ctx => {
+        // Query the profile with the given id
+        // The member is the roomMember with the profileId equal to the profile.id
         const { profile, member } = await di.db
           .select({ profile: profileTable, member: roomMemberTable })
           .from(profileTable)
