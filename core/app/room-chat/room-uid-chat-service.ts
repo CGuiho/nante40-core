@@ -10,7 +10,7 @@ import { RoomChatSubscriptionManager, roomMessageChannelKey } from '#guiho/app/r
 import { roomMessage as roomMessageTable } from '@guiho40/nante40'
 import { Elysia, t } from 'elysia'
 
-export { roomChatService }
+export { roomUidChatService }
 export type {}
 
 /**
@@ -20,7 +20,7 @@ const incomingMessageSchema = t.Object({
   content: t.String({ minLength: 1, maxLength: 2000 }),
 })
 
-function roomChatService(di: DependencyInjection) {
+function roomUidChatService(di: DependencyInjection) {
   /**
    * @section Singleton Manager
    * Since this function is called exactly once, this instance acts as a Singleton.
