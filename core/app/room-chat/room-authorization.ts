@@ -4,7 +4,7 @@
 
 import type { DependencyInjection } from '#guiho/app/dependency-injection.js'
 import { helm } from '@guiho40/helm'
-import { roomDbGet, roomMember, type Profile } from '@guiho40/nante40'
+import { roomDbGet, roomMember as roomMemberTable, type Profile } from '@guiho40/nante40'
 import { and, eq } from 'drizzle-orm'
 
 export { roomAuthorization }
@@ -48,8 +48,8 @@ async function roomAuthorization(options: RoomAuthorizationOptions, di: Dependen
   // Perform DB lookup to check if user is a member of the room.
   const [member] = await di.db
     .select()
-    .from(roomMember)
-    .where(and(eq(roomMember.roomId, room.id), eq(roomMember.profileId, profile.id)))
+    .from(roomMemberTable)
+    .where(and(eq(roomMemberTable.roomId, room.id), eq(roomMemberTable.profileId, profile.id)))
     .limit(1)
 
   if (!member) {
@@ -67,5 +67,5 @@ async function roomAuthorization(options: RoomAuthorizationOptions, di: Dependen
     return { success: false, redirect: helm['nante40.guiho.co']('/room/:uid/suspended', { uid: options.uid }) } as const
   }
 
-  return { success: true, room, roomMember } as const
+  return { success: true, room, roomMember: member } as const
 }
