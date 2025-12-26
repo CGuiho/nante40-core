@@ -6,7 +6,7 @@ import type { Secrets } from '#guiho/app/environment.js'
 import { getValkey } from '#guiho/app/valkey.js'
 import Valkey from 'iovalkey'
 
-export { RoomChatSubscriptionManager }
+export { RoomChatSubscriptionManager, roomMessageChannelKey }
 export type {}
 
 const roomMessageChannelKey = (uid: string) => `room:message:${uid}`
