@@ -20,11 +20,12 @@ import { typeboxParseOrThrow } from '@guiho40/sensacional'
 import { chatService } from '#guiho/app/chat-service'
 import type { DependencyInjection } from '#guiho/app/dependency-injection'
 import { pingService } from '#guiho/app/ping'
-import { roomChatService } from '#guiho/app/room-chat/room-uid-chat-service.js'
+import { roomUidChatService } from '#guiho/app/room-chat/room-uid-chat-service.js'
 import { valkeyService } from '#guiho/app/valkey-service'
 import { getGuihoDatabase } from '@guiho40/guiho/server'
 import { getNante40Database } from '@guiho40/nante40/server'
 import { profileService } from '#guiho/app/profile/profile-service.js'
+import { roomUidService } from '#guiho/app/room-chat/room-uid-service.js'
 
 export {}
 export type { GuihoNante40Core }
@@ -96,7 +97,8 @@ const app = new Elysia()
   .use(valkeyService(dependencyInjection))
   
   .use(profileService(dependencyInjection))
-  .use(roomChatService(dependencyInjection))
+  .use(roomUidService(dependencyInjection))
+  .use(roomUidChatService(dependencyInjection))
   
   .onStart(({ server, decorator }) => decorator.di.logger.pulse(`running at http://localhost:${server?.port}`))
   .onStop(async ({ decorator }) => {
