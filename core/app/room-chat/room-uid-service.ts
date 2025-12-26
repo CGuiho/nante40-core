@@ -147,6 +147,7 @@ function roomUidService(di: DependencyInjection) {
         }),
       },
     })
+
     .get(
       '/member/:muid',
       async ctx => {
@@ -190,7 +191,33 @@ function roomUidService(di: DependencyInjection) {
           404: t.String(),
         },
       },
-    ) 
+    )
 
+    .get(
+      '/member/:pid/full',
+      async ctx => {
+        const { profile, member } = await di.db
+          .select({ profile: profileTable, member: roomMemberTable })
+          .from(profileTable)
+          .innerJoin(roomMemberTable, eq(profileTable.id, roomMemberTable.profileId))
+          .where(eq(profileTable.id, ctx.params.pid))
+          .then(res => res[0])
 
+        const user = await userDbGet(profile.userId, di)
+        if (!user) throw ctx.status(404, 'User not found')
+
+        return { member, profile, user }
+      },
+      {
+        params: t.Object({ uid: t.String(), pid: t.Number() }),
+        response: {
+          200: t.Object({
+            member: roomMemberSchema,
+            profile: profileSchema,
+            user: userSchema,
+          }),
+          404: t.String(),
+        },
+      },
+    )
 }
