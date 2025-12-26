@@ -1,0 +1,22 @@
+type: environment
+model: environment
+id: ev_gpDA2n4Wfm
+workspaceId: wk_PJdYXwU68m
+createdAt: 2025-12-26T00:20:43.066702400
+updatedAt: 2025-12-26T00:30:31.248609800
+name: Local
+public: true
+base: false
+parentModel: environment
+parentId: null
+variables:
+- enabled: true
+  name: origin
+  value: localhost:2060
+  id: yqWrycRaRf
+- enabled: true
+  name: ws_origin
+  value: ws://localhost:2060
+  id: 9vuAH2cuvJ
+color: var(--secondary)
+sortPriority: 0.0
