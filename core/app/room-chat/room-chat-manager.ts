@@ -82,7 +82,7 @@ class RoomChatSubscriptionManager {
   }
 
   /**
-   * ✅ NEW: Cleanup method to prevent ghost connections
+   * Cleanup method to prevent ghost connections
    */
   public async disconnect() {
     console.log('[RoomChatManager] 🛑 Disconnecting services...')
