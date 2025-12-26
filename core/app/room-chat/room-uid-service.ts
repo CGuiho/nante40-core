@@ -165,7 +165,7 @@ function roomUidService(di: DependencyInjection) {
       },
     )
     .get(
-      '/member/:muid/with-profile-user',
+      '/member/:muid/full',
       async ctx => {
         const { member, profile } = await di.db
           .select({ member: roomMemberTable, profile: profileTable })
@@ -191,4 +191,6 @@ function roomUidService(di: DependencyInjection) {
         },
       },
     )
+
+
 }
