@@ -2,7 +2,7 @@ type: folder
 model: folder
 id: fl_NkrTsefJ5b
 createdAt: 2025-12-26T00:49:46.260175700
-updatedAt: 2025-12-26T00:49:46.260176300
+updatedAt: 2025-12-26T20:12:17.389776
 workspaceId: wk_PJdYXwU68m
 folderId: null
 authentication: {}
@@ -10,4 +10,4 @@ authenticationType: null
 description: ''
 headers: []
 name: guiho-core
-sortPriority: -1766710186258.0
+sortPriority: 1000.0
