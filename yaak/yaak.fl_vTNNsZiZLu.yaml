@@ -2,7 +2,7 @@ type: folder
 model: folder
 id: fl_vTNNsZiZLu
 createdAt: 2025-12-26T17:57:55.568237800
-updatedAt: 2025-12-26T17:57:58.774078500
+updatedAt: 2025-12-26T20:12:17.400024400
 workspaceId: wk_PJdYXwU68m
 folderId: null
 authentication: {}
@@ -10,4 +10,4 @@ authenticationType: null
 description: ''
 headers: []
 name: Room
-sortPriority: -1177806790838.6665
+sortPriority: 2000.0
