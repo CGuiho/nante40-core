@@ -2,9 +2,9 @@ type: websocket_request
 model: websocket_request
 id: wr_kkQSSG7iSb
 createdAt: 2025-12-26T00:19:56.633101900
-updatedAt: 2025-12-26T00:59:32.079978900
+updatedAt: 2025-12-26T17:58:04.204837
 workspaceId: wk_PJdYXwU68m
-folderId: null
+folderId: fl_vTNNsZiZLu
 authentication: {}
 authenticationType: null
 description: ''
@@ -12,7 +12,7 @@ headers: []
 message: |
   { "content": "Cristóvão GUIHO" }
 name: /room/:uid/chat
-sortPriority: 1000.0
+sortPriority: 0.0
 url: ${[ ws_origin ]}/room/:uid/chat/ws
 urlParameters:
 - enabled: true
