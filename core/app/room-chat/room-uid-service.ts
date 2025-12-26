@@ -10,7 +10,7 @@ import { roomAuthorization } from '#guiho/app/room-chat/room-authorization.js'
 import { profileSchema, roomDbGet, roomMemberDbGet, roomMemberSchema } from '@guiho40/nante40'
 import { Elysia, t } from 'elysia'
 
-import { userDbGet, user as userTable } from '@guiho40/guiho'
+import { userDbGet, userSchema, user as userTable } from '@guiho40/guiho'
 import { profile, profile as profileTable, roomMember as roomMemberTable } from '@guiho40/nante40'
 import { count, eq, inArray } from 'drizzle-orm'
 
@@ -110,7 +110,7 @@ function roomUidService(di: DependencyInjection) {
         const membersWithUsers = members
           .map(({ member, profile }) => {
             const user = memberUsers.find(u => u.id === profile.userId)
-            return user ? { member, user } : null
+            return user ? { member, user, profile } : null
           })
           .filter((item): item is NonNullable<typeof item> => item !== null)
 
@@ -121,13 +121,49 @@ function roomUidService(di: DependencyInjection) {
         }
         return { membersWithUsers, pagination }
       },
-      { query: paginationSchema },
+      {
+        query: paginationSchema,
+        response: {
+          200: t.Object({
+            membersWithUsers: t.Array(
+              t.Object({
+                member: roomMemberSchema,
+                profile: profileSchema,
+                user: userSchema,
+              }),
+            ),
+            pagination: paginationFullSchema,
+          }),
+        },
+      },
     )
 
-    .get('/member/mine', async ctx => ({ member: ctx.roomMember, profile: ctx.profile, user: ctx.user }))
-    .get('/member/:muid', async ctx => ({ member: await roomMemberDbGet(ctx.params.muid, di) }), {
-      params: t.Object({ uid: t.String(), muid: t.String() }),
+    .get('/member/mine', async ctx => ({ member: ctx.roomMember, profile: ctx.profile, user: ctx.user }), {
+      response: {
+        200: t.Object({
+          member: roomMemberSchema,
+          profile: profileSchema,
+          user: userSchema,
+        }),
+      },
     })
+    .get(
+      '/member/:muid',
+      async ctx => {
+        const member = await roomMemberDbGet(ctx.params.muid, di)
+        if (!member) throw ctx.status(404, 'Member not found')
+        return { member }
+      },
+      {
+        params: t.Object({ uid: t.String(), muid: t.String() }),
+        response: {
+          200: t.Object({
+            member: roomMemberSchema,
+          }),
+          404: t.String(),
+        },
+      },
+    )
     .get(
       '/member/:muid/with-profile-user',
       async ctx => {
@@ -139,10 +175,20 @@ function roomUidService(di: DependencyInjection) {
           .then(res => res[0])
 
         const user = await userDbGet(profile.userId, di)
+        if (!user) throw ctx.status(404, 'User not found')
+
         return { member, profile, user }
       },
       {
         params: t.Object({ uid: t.String(), muid: t.String() }),
+        response: {
+          200: t.Object({
+            member: roomMemberSchema,
+            profile: profileSchema,
+            user: userSchema,
+          }),
+          404: t.String(),
+        },
       },
     )
 }
