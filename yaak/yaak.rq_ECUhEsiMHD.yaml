@@ -1,0 +1,30 @@
+type: http_request
+model: http_request
+id: rq_ECUhEsiMHD
+createdAt: 2025-12-26T18:15:58.538071500
+updatedAt: 2025-12-26T18:16:35.711036100
+workspaceId: wk_PJdYXwU68m
+folderId: fl_vTNNsZiZLu
+authentication: {}
+authenticationType: null
+body: {}
+bodyType: null
+description: ''
+headers: []
+method: GET
+name: /room/:uid/member/:muid/with-profile-user
+sortPriority: 0.002
+url: ${[ origin ]}/room/:uid/member/:muid/with-profile-user
+urlParameters:
+- enabled: true
+  name: :uid
+  value: l8tw37go0c095ta7
+  id: Ce0WgKjdiZ
+- enabled: true
+  name: :muid
+  value: 06hm66wao5urixq7ho86m60h
+  id: i4jQPSSkpn
+- enabled: true
+  name: ''
+  value: ''
+  id: vkxtjMmVhM
