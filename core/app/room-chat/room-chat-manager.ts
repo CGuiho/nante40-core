@@ -9,6 +9,8 @@ import Valkey from 'iovalkey'
 export { RoomChatSubscriptionManager }
 export type {}
 
+const roomMessageChannelKey = (uid: string) => `room:message:${uid}`
+
 class RoomChatSubscriptionManager {
   private subscriber: Valkey
   private publisher: Valkey
@@ -38,7 +40,7 @@ class RoomChatSubscriptionManager {
    * Called when a WebSocket connects to a room
    */
   public async joinRoom(roomUid: string) {
-    const channel = `room:${roomUid}`
+    const channel = roomMessageChannelKey(roomUid)
     const currentCount = this.localRoomCounts.get(channel) || 0
 
     // If this is the FIRST user on this instance for this room,
@@ -55,7 +57,7 @@ class RoomChatSubscriptionManager {
    * Called when a WebSocket disconnects
    */
   public async leaveRoom(roomUid: string) {
-    const channel = `room:${roomUid}`
+    const channel = roomMessageChannelKey(roomUid)
     const currentCount = this.localRoomCounts.get(channel) || 0
 
     if (currentCount <= 1) {
@@ -75,6 +77,6 @@ class RoomChatSubscriptionManager {
     // We publish to Valkey.
     // Valkey will send it back to us (if we are subscribed)
     // AND to all other instances.
-    await this.publisher.publish(`room:${roomUid}`, message)
+    await this.publisher.publish(roomMessageChannelKey(roomUid), message)
   }
 }
