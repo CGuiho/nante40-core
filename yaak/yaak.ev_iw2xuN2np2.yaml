@@ -3,7 +3,7 @@ model: environment
 id: ev_iw2xuN2np2
 workspaceId: wk_PJdYXwU68m
 createdAt: 2025-12-26T00:23:42.750432600
-updatedAt: 2025-12-26T00:30:19.487179100
+updatedAt: 2025-12-26T00:30:43.755663300
 name: Production Google Cloud Run URL
 public: true
 base: false
@@ -19,4 +19,4 @@ variables:
   value: wss://guiho-nante40-core-754145392603.europe-west4.run.app
   id: ZXvAtwEi0x
 color: var(--warning)
-sortPriority: 0.0
+sortPriority: 333.3333333333333
