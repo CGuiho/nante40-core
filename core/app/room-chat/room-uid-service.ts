@@ -126,7 +126,7 @@ function roomUidService(di: DependencyInjection) {
 
     .get('/member/mine', async ctx => ({ member: ctx.roomMember, profile: ctx.profile, user: ctx.user }))
     .get('/member/:muid', async ctx => ({ member: await roomMemberDbGet(ctx.params.muid, di) }), {
-      params: t.Object({ muid: t.String() }),
+      params: t.Object({ uid: t.String(), muid: t.String() }),
     })
     .get(
       '/member/:muid/with-profile-user',
@@ -142,7 +142,7 @@ function roomUidService(di: DependencyInjection) {
         return { member, profile, user }
       },
       {
-        params: t.Object({ muid: t.String() }),
+        params: t.Object({ uid: t.String(), muid: t.String() }),
       },
     )
 }
