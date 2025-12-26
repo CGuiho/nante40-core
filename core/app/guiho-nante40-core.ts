@@ -24,6 +24,7 @@ import { roomChatService } from '#guiho/app/room-chat/room-chat.js'
 import { valkeyService } from '#guiho/app/valkey-service'
 import { getGuihoDatabase } from '@guiho40/guiho/server'
 import { getNante40Database } from '@guiho40/nante40/server'
+import { profileService } from '#guiho/app/profile/profile-service.js'
 
 export {}
 export type { GuihoNante40Core }
@@ -94,6 +95,7 @@ const app = new Elysia()
   
   .use(valkeyService(dependencyInjection))
   
+  .use(profileService(dependencyInjection))
   .use(roomChatService(dependencyInjection))
   
   .onStart(({ server, decorator }) => decorator.di.logger.pulse(`running at http://localhost:${server?.port}`))
