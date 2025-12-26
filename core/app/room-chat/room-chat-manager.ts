@@ -26,6 +26,7 @@ class RoomChatSubscriptionManager {
 
     // When Valkey sends a message, broadcast it to LOCAL WebSocket clients
     this.subscriber.on('message', (channel, message) => {
+      console.log(`[Valkey] Received message for ${channel}: ${message}`)
       // channel is "room:abc", message is JSON string
       // bun.server.publish sends to all local clients subscribed to this topic
       this.server?.publish(channel, message)
