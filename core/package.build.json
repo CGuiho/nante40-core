@@ -25,24 +25,16 @@
   },
   "homepage": "https://github.com/CGuiho/nante40-core#readme",
   "bugs": "https://github.com/CGuiho/nante40-core/issues",
-  "files": [
-    "library/",
-    "types/",
-    "docs/",
-    "CHANGELOG.md",
-    "LICENSE.md"
-  ],
-  "peerDependencies": {
-    "@sinclair/typebox": ">= 0.34.0"
-  },
+  "files": ["library/", "types/", "docs/", "CHANGELOG.md", "LICENSE.md"],
   "scripts": {
-    "dev": "bun run --watch app/guiho-nante40-core.ts",
+    "dev": "bun run --env-file=../../.env/.env.guiho-nante40-core --watch app/guiho-nante40-core.ts",
     "start": "bun run app/guiho-nante40-core.ts",
-    "compile": "bun build --compile --minify-whitespace --minify-syntax --target bun --outfile nante40-core ./app/guiho-nante40-core.ts",
-    "compile-linux-x64": "bun build --compile --minify-whitespace --minify-syntax --target bun-linux-x64 --outfile nante40-core ./app/guiho-nante40-core.ts",
+    "compile": "bun build --compile --minify-whitespace --minify-syntax --target bun --outfile guiho-nante40-core ./app/guiho-nante40-core.ts",
+    "compile-linux-x64": "bun build --compile --minify-whitespace --minify-syntax --target bun-linux-x64 --outfile guiho-nante40-core ./app/guiho-nante40-core.ts",
     "bundle": "bun build --minify-whitespace --minify-syntax --target bun --outfile guiho-nante40-core.js ./app/guiho-nante40-core.ts",
     "pkg:build": "rm -rf library && tsc",
     "typecheck": "tsc --noEmit",
+    "_env": "bun --env-file=../../.env/.env.guiho-nante40-core",
     "_clean": "rm -rf .temp node_modules bun.lock",
     "_tc": "bun run typecheck",
     "_ci": "bun _clean && bun install",
@@ -54,29 +46,33 @@
     "_ga-i-sa": "gcloud auth application-default login --impersonate-service-account nante40-core@guiho40.iam.gserviceaccount.com",
     "_gaa": "npx google-artifactregistry-auth"
   },
+  "peerDependencies": {
+    "@sinclair/typebox": ">= 0.34.0",
+    "elysia": ">= 1.4.19"
+  },
   "dependencies": {
     "@elysiajs/cors": "^1.4.0",
     "@elysiajs/openapi": "^1.4.11",
     "@guiho40/cookie": "^1.4.1",
-    "@guiho40/guiho": "0.19.0",
+    "@guiho40/guiho": "^0.23.1",
+    "@guiho40/helm": "6.0.0-alpha.7",
     "@guiho40/iso-8601": "1.1.0",
     "@guiho40/logger": "1.6.0",
     "@guiho40/maria": "^2.1.0",
+    "@guiho40/nante40": "0.2.1",
     "@guiho40/razura40": "0.12.0",
-    "@guiho40/sensacional": "2.9.0",
+    "@guiho40/sensacional": "^3.0.0-alpha.1",
     "@guiho40/stored": "^2.0.0-alpha.1",
     "@guiho40/time": "^1.1.0",
     "csv-parse": "^6.1.0",
     "drizzle-orm": "^0.45.0",
-    "elysia": "^1.4.18",
     "firebase-admin": "^13.6.0",
     "iovalkey": "^0.3.3",
-    "pg": "^8.16.3",
+    "postgres": "^3.4.7",
     "resend": "^6.5.2"
   },
   "devDependencies": {
     "@guiho40/mirror": "^2.3.0",
-    "@types/bun": "^1.3.4",
-    "@types/pg": "^8.15.6"
+    "@types/bun": "^1.3.4"
   }
 }
