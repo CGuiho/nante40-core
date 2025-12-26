@@ -51,7 +51,7 @@
     "@elysiajs/cors": "^1.4.0",
     "@elysiajs/openapi": "^1.4.13",
     "@guiho40/cookie": "^1.4.1",
-    "@guiho40/guiho": "^0.23.1",
+    "@guiho40/guiho": "0.23.3",
     "@guiho40/helm": "6.0.0-alpha.7",
     "@guiho40/iso-8601": "1.1.0",
     "@guiho40/logger": "1.6.0",

@@ -8,7 +8,7 @@
         "@elysiajs/cors": "^1.4.0",
         "@elysiajs/openapi": "^1.4.13",
         "@guiho40/cookie": "^1.4.1",
-        "@guiho40/guiho": "^0.23.1",
+        "@guiho40/guiho": "0.23.3",
         "@guiho40/helm": "6.0.0-alpha.7",
         "@guiho40/iso-8601": "1.1.0",
         "@guiho40/logger": "1.6.0",
@@ -76,7 +76,7 @@
 
     "@guiho40/cookie": ["@guiho40/cookie@1.4.1", "https://europe-west4-npm.pkg.dev/guiho40/guiho40/@guiho40/cookie/-/@guiho40/cookie-1.4.1.tgz", { "dependencies": { "@guiho40/janitor": "1.0.0", "cookie": "^1.0.2" }, "peerDependencies": { "@sinclair/typebox": ">= 0.34.0" } }, "sha512-nUObLZ2cgtz81CiI+RIqU/CM+gWD9Vx4sO+E1CgR/+Jeau6VScD8vX84yrniT54ElC+Q+FHDX6Nfj2nxBdZgNw=="],
 
-    "@guiho40/guiho": ["@guiho40/guiho@0.23.1", "https://europe-west4-npm.pkg.dev/guiho40/guiho40/@guiho40/guiho/-/@guiho40/guiho-0.23.1.tgz", { "dependencies": { "@guiho40/logger": "^1.6.0", "@guiho40/sensacional": "3.0.0-alpha.1", "@guiho40/time": "1.1.0", "iovalkey": "^0.3.3", "postgres": "^3.4.7" }, "peerDependencies": { "@sinclair/typebox": ">= 0.34.0", "drizzle-orm": ">= 0.45.1" } }, "sha512-wuv6glI7rQ+210S/ARyuhJL4Dxq5Tt0qe2xQfwBP+8oq0W+AUWyxqQdli2EVYmw8vprmWKShFcX6TJN15sCdgA=="],
+    "@guiho40/guiho": ["@guiho40/guiho@0.23.3", "https://europe-west4-npm.pkg.dev/guiho40/guiho40/@guiho40/guiho/-/@guiho40/guiho-0.23.3.tgz", { "dependencies": { "@guiho40/logger": "^1.6.0", "@guiho40/sensacional": "3.0.0-alpha.1", "@guiho40/time": "1.1.0", "iovalkey": "^0.3.3", "postgres": "^3.4.7" }, "peerDependencies": { "@sinclair/typebox": ">= 0.34.0", "drizzle-orm": ">= 0.45.1" } }, "sha512-kaQrprE/b5wiVuwY7+8pIM23Jv5UE9/33MA9O1OLqFV7lNPHcrCUl+oQvr1PvOLvVNfOH66geRf5oV/p0dFzhA=="],
 
     "@guiho40/helm": ["@guiho40/helm@6.0.0-alpha.7", "https://europe-west4-npm.pkg.dev/guiho40/guiho40/@guiho40/helm/-/@guiho40/helm-6.0.0-alpha.7.tgz", { "peerDependencies": { "@sinclair/typebox": ">= 0.34.0" } }, "sha512-rPoIaRvkOMGf1hwtTnF3DYU/wla/ox0PPYSVErWTN04k/KVPXLIBMJ8P3t3+1eJWGbkCNAh+Gj79/V3z265rTw=="],
 
