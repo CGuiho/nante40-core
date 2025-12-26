@@ -8,7 +8,8 @@ fi
 
 _image_tag=$1
 _docker_image=nante40-core
-_service=nante40-core
+_service=guiho-nante40-core
+_service_account=nante40-core@guiho40.iam.gserviceaccount.com
 
 script_dir=$(dirname $0)
 variables_string=$("$script_dir/prod-variables.sh")
@@ -33,7 +34,7 @@ sleep 1 && echo "🕔 1 second left."
 
 gcloud run deploy $_service \
   --image europe-west4-docker.pkg.dev/guiho40/guiho/$_docker_image:$_image_tag \
-  --service-account nante40-core@guiho40.iam.gserviceaccount.com \
+  --service-account $_service_account \
   --timeout 3600 \
   --concurrency 100 \
   --memory 512Mi \
