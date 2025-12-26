@@ -41,6 +41,12 @@ function roomChatService(di: DependencyInjection) {
         }
       })
 
+      // This prevents "Ghost Subscribers" during hot-reloading
+      .onStop(async () => {
+        logger.info('Stopping Room Chat Manager...')
+        await chatManager.disconnect()
+      })
+
       .use(authMiddleware(di))
       .use(profileMiddleware(di))
 
