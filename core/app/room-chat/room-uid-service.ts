@@ -201,11 +201,9 @@ function roomUidService(di: DependencyInjection) {
         const { profile, member } = await di.db
           .select({ profile: profileTable, member: roomMemberTable })
           .from(profileTable)
-          .innerJoin(roomMemberTable, 
-            and(
-              eq(profileTable.id, roomMemberTable.profileId),
-              eq(roomMemberTable.roomId, ctx.room.id)
-            )
+          .innerJoin(
+            roomMemberTable,
+            and(eq(profileTable.id, roomMemberTable.profileId), eq(roomMemberTable.roomId, ctx.room.id)),
           )
           .where(eq(profileTable.id, ctx.params.pid))
           .then(res => res[0])
