@@ -80,4 +80,21 @@ class RoomChatSubscriptionManager {
     // AND to all other instances.
     await this.publisher.publish(roomMessageChannelKey(roomUid), message)
   }
+
+  /**
+   * ✅ NEW: Cleanup method to prevent ghost connections
+   */
+  public async disconnect() {
+    console.log('[RoomChatManager] 🛑 Disconnecting services...')
+
+    // Remove all listeners to stop processing events
+    this.subscriber.removeAllListeners('message')
+
+    // Quit Redis connections
+    await Promise.all([this.subscriber.quit(), this.publisher.quit()])
+
+    this.server = null
+    this.localRoomCounts.clear()
+    console.log('[RoomChatManager] Services stopped.')
+  }
 }
