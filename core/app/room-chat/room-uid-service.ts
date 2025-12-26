@@ -4,10 +4,10 @@
 
 import { authMiddleware } from '#guiho/app/auth/auth-middleware.js'
 import type { DependencyInjection } from '#guiho/app/dependency-injection'
-import { paginationSchema, thresholds, type PaginationFull } from '#guiho/app/pagination.js'
+import { paginationFullSchema, paginationSchema, thresholds, type PaginationFull } from '#guiho/app/pagination.js'
 import { profileMiddleware } from '#guiho/app/profile/profile-middleware.js'
 import { roomAuthorization } from '#guiho/app/room-chat/room-authorization.js'
-import { roomDbGet, roomMemberDbGet } from '@guiho40/nante40'
+import { profileSchema, roomDbGet, roomMemberDbGet, roomMemberSchema } from '@guiho40/nante40'
 import { Elysia, t } from 'elysia'
 
 import { userDbGet, user as userTable } from '@guiho40/guiho'
@@ -66,7 +66,20 @@ function roomUidService(di: DependencyInjection) {
         }
         return { members, pagination }
       },
-      { query: paginationSchema },
+      {
+        query: paginationSchema,
+        response: {
+          200: t.Object({
+            members: t.Array(
+              t.Object({
+                member: roomMemberSchema,
+                profile: profileSchema,
+              }),
+            ),
+            pagination: paginationFullSchema,
+          }),
+        },
+      },
     )
     .get(
       '/member/with-user',
