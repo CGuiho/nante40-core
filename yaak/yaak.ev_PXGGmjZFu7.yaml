@@ -1,0 +1,22 @@
+type: environment
+model: environment
+id: ev_PXGGmjZFu7
+workspaceId: wk_PJdYXwU68m
+createdAt: 2025-12-26T00:21:43.513878300
+updatedAt: 2025-12-26T00:30:28.920746200
+name: Production
+public: true
+base: false
+parentModel: environment
+parentId: null
+variables:
+- enabled: true
+  name: origin
+  value: core.nante40.guiho.co
+  id: iJH2E2P4NE
+- enabled: true
+  name: ws_origin
+  value: wss://core.nante40.guiho.co
+  id: Mv6Iws5GCb
+color: var(--danger)
+sortPriority: 1000.0
