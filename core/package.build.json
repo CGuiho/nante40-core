@@ -58,7 +58,7 @@
   },
   "dependencies": {
     "@elysiajs/cors": "^1.4.0",
-    "@elysiajs/openapi": "^1.4.12",
+    "@elysiajs/openapi": "^1.4.13",
     "@guiho40/cookie": "^1.4.1",
     "@guiho40/guiho": "^0.23.1",
     "@guiho40/helm": "6.0.0-alpha.7",
