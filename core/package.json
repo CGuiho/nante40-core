@@ -6,7 +6,7 @@
     }
   },
   "name": "nante40-core",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "module": "app/guiho-nante40-core.ts",
   "type": "module",
   "private": true,
