@@ -59,6 +59,14 @@ function roomChatService(di: DependencyInjection) {
         body: incomingMessageSchema,
 
         /**
+         * Use of beforeHandle for WebSocket-specific authorization.
+         * This runs before 'open' and is the idiomatic way to authorize a WebSocket upgrade.
+         */
+        async beforeHandle({ room, roomMember, profile, status }) {
+          if (profile === null || room === null || roomMember === null) status(401, 'Unauthorized')
+        },
+
+        /**
          * Handle New Connection
          */
         async open(ws) {
@@ -110,12 +118,13 @@ function roomChatService(di: DependencyInjection) {
         async close(ws) {
           const { room } = ws.data
 
-          // Unsubscribe from Valkey if this was the last user on this instance
-          await chatManager.leaveRoom(room.uid)
-
-          ws.unsubscribe(`room:${room.uid}`)
-
-          logger.info(`WebSocket Client ${ws.id} left room ${room.uid}`)
+          try {
+            await chatManager.leaveRoom(room.uid)
+            ws.unsubscribe(`room:${room.uid}`)
+            logger.info(`WebSocket Client ${ws.id} left room ${room.uid}`)
+          } catch (error) {
+            logger.error(`[WS] Error during cleanup for client ${ws.id} in room ${room.uid}`, error)
+          }
         },
       })
   )
