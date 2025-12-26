@@ -6,7 +6,7 @@
       "name": "nante40-core",
       "dependencies": {
         "@elysiajs/cors": "^1.4.0",
-        "@elysiajs/openapi": "^1.4.12",
+        "@elysiajs/openapi": "^1.4.13",
         "@guiho40/cookie": "^1.4.1",
         "@guiho40/guiho": "^0.23.1",
         "@guiho40/helm": "6.0.0-alpha.7",
@@ -38,7 +38,7 @@
 
     "@elysiajs/cors": ["@elysiajs/cors@1.4.0", "", { "peerDependencies": { "elysia": ">= 1.4.0" } }, "sha512-pb0SCzBfFbFSYA/U40HHO7R+YrcXBJXOWgL20eSViK33ol1e20ru2/KUaZYo5IMUn63yaTJI/bQERuQ+77ND8g=="],
 
-    "@elysiajs/openapi": ["@elysiajs/openapi@1.4.12", "", { "peerDependencies": { "elysia": ">= 1.4.0" } }, "sha512-FhmWqUFDOidD2tUR0mrLnD2M0OUFF6cFUfKtHkQDbnAmCihFusxs7JvtUJjmEKZ++mzNvYLpbhZeJIXA7tIzLA=="],
+    "@elysiajs/openapi": ["@elysiajs/openapi@1.4.13", "", { "peerDependencies": { "elysia": ">= 1.4.0" } }, "sha512-5BNI7yuFo8zjacTWA8a/wYE0tNZ4ecD7PAkeUDEU7lj6Iep0t2i5Rml6q4/+roM5oZFdtvvzoX4DH8zGKFEo0w=="],
 
     "@fastify/busboy": ["@fastify/busboy@3.2.0", "", {}, "sha512-m9FVDXU3GT2ITSe0UaMA5rU3QkfC/UXtCU8y0gSN/GugTqtVldOBWIB5V6V3sbmenVZUIpU6f+mPEO2+m5iTaA=="],
 
