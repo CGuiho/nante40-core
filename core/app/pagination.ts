@@ -4,8 +4,8 @@
 
 import { Type } from '@sinclair/typebox'
 
-export { DEFAUlT_PAGE, DEFAULT_SIZE, MAX_SIZE, paginationSchema, thresholds }
-export type { Pagination }
+export { DEFAUlT_PAGE, DEFAULT_SIZE, MAX_SIZE, paginationFullSchema, paginationSchema, thresholds }
+export type { Pagination, PaginationFull }
 
 const DEFAUlT_PAGE = 1 as const
 const DEFAULT_SIZE = 10 as const
@@ -21,7 +21,15 @@ const paginationSchema = Type.Object({
   size: sizeSchema,
 })
 
+const paginationFullSchema = Type.Object({
+  page: pageSchema,
+  size: sizeSchema,
+  total: Type.Number({ minimum: 0 }),
+})
+
 type Pagination = typeof paginationSchema.static
+
+type PaginationFull = typeof paginationFullSchema.static
 
 /**
  * Calculates the limit and offset for pagination.
