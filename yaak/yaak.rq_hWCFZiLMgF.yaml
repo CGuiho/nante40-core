@@ -1,0 +1,27 @@
+type: http_request
+model: http_request
+id: rq_hWCFZiLMgF
+createdAt: 2025-12-26T00:51:46.011807600
+updatedAt: 2025-12-26T00:52:27.081662
+workspaceId: wk_PJdYXwU68m
+folderId: fl_NkrTsefJ5b
+authentication: {}
+authenticationType: null
+body:
+  text: |-
+    {
+      "email": "cguiho40@gmail.com",
+      "code": "353147"
+    }
+bodyType: application/json
+description: ''
+headers:
+- enabled: true
+  name: Content-Type
+  value: application/json
+  id: K4ISzqB5kf
+method: POST
+name: /auth/email/sign-in
+sortPriority: 0.001
+url: ${[ guiho_origin ]}/auth/sign-in/email/attempt
+urlParameters: []
