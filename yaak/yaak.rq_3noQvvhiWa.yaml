@@ -2,7 +2,7 @@ type: http_request
 model: http_request
 id: rq_3noQvvhiWa
 createdAt: 2025-12-26T17:58:18.890358100
-updatedAt: 2025-12-26T17:58:18.890358700
+updatedAt: 2025-12-26T18:06:21.254626300
 workspaceId: wk_PJdYXwU68m
 folderId: fl_vTNNsZiZLu
 authentication: {}
@@ -12,7 +12,15 @@ bodyType: null
 description: ''
 headers: []
 method: GET
-name: ''
+name: /room/:uid/member/mine
 sortPriority: 0.0
-url: ''
-urlParameters: []
+url: ${[ origin ]}/room/:uid/member/mine
+urlParameters:
+- enabled: true
+  name: :uid
+  value: l8tw37go0c095ta7
+  id: Ce0WgKjdiZ
+- enabled: true
+  name: ''
+  value: ''
+  id: FYp5faFKs9
